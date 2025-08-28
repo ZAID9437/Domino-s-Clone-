@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Domino's Customer Reviews</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #E31837 0%, #9D0B28 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+        }
+        
+        .header-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Review Form Section */
+        .review-form {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px auto;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+        
+        .review-form h2 {
+            color: #E31837;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .review-form h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #E31837;
+            border-radius: 2px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: #E31837;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(227, 24, 55, 0.2);
+        }
+        
+        .star-rating {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .star-rating input {
+            display: none;
+        }
+        
+        .star-rating label {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .star-rating input:checked ~ label {
+            color: #ddd;
+        }
+        
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked + label,
+        .star-rating input:checked ~ label {
+            color: #FFD700;
+        }
+        
+        button {
+            background: #E31837;
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background: #9D0B28;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Reviews Section */
+        .reviews-section {
+            padding: 40px 0;
+        }
+        
+        .reviews-section h1 {
+            text-align: center;
+            color: #E31837;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .reviews-section h1::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #E31837;
+            border-radius: 2px;
+        }
+        
+        .review-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .review-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .customer-info {
+            display: flex;
+            align-items: center;
+            padding: 20px 20px 10px;
+        }
+        
+        .customer-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #E31837;
+            margin-right: 15px;
+        }
+        
+        .customer-name {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .review-date {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .review-content {
+            padding: 0 20px 20px;
+        }
+        
+        .customer-review {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        .stars {
+            margin-right: 10px;
+        }
+        
+        .review-stats {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: center;
+        }
+        
+        .stats-title {
+            color: #E31837;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .stat-item {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #E31837;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2C3E50;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-section h3 {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section a {
+            display: block;
+            color: #DDD;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #AAA;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .review-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .review-form {
+                padding: 20px;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Domino's Pizza Reviews</h1>
+            <p class="header-subtitle">See what our customers are saying about us!</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="review-form">
+            <h2>Leave Your Review</h2>
+            <form action="index10.html">
+                <div class="form-group">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                    <label>Rating:</label>
+                    <div class="star-rating">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5"><i class="fas fa-star"></i></label>
+                        
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4"><i class="fas fa-star"></i></label>
+                        
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3"><i class="fas fa-star"></i></label>
+                        
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2"><i class="fas fa-star"></i></label>
+                        
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1"><i class="fas fa-star"></i></label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="review">Your Review:</label>
+                    <textarea id="review" name="review" rows="4" required placeholder="Share your experience with us..."></textarea>
+                </div>
+
+                <button type="submit">Submit Review</button>
+            </form>
+        </section>
+
+        <div class="review-stats">
+            <h3 class="stats-title">Customer Satisfaction</h3>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-value">4.8</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2,540+</div>
+                    <div class="stat-label">Reviews</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">94%</div>
+                    <div class="stat-label">Would Recommend</div>
+                </div>
+            </div>
+        </div>
+
+        <section class="reviews-section">
+            <h1>Customer Reviews</h1>
+            <div class="review-container">
+                <div class="review-card">
+                    <div class="customer-info">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer Photo" class="customer-photo">
+                        <div>
+                            <h3 class="customer-name">Adelhid</h3>
+                            <div class="review-date">October 18, 2024</div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p class="customer-review">"Pure Tasty & Purely Economic, hygienic, available every time, smell healthy, highly professionalised preparation."</p>
+                        <div class="rating">
+                            <div class="stars">★★★★☆</div>
+                            <span>4/5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="customer-info">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Customer Photo" class="customer-photo">
+                        <div>
+                            <h3 class="customer-name">Lorenzo</h3>
+                            <div class="review-date">October 16, 2024</div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p class="customer-review">"Nice service in dehradun pizza is good but music in store not good. Good thing is the staff of store is good."</p>
+                        <div class="rating">
+                            <div class="stars">★★★★★</div>
+                            <span>5/5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="customer-info">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Customer Photo" class="customer-photo">
+                        <div>
+                            <h3 class="customer-name">Sofia</h3>
+                            <div class="review-date">October 14, 2024</div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p class="customer-review">"Perfect blend of genuine ingredients and baked to the core. A treat to devour with unparalleled hospitality."</p>
+                        <div class="rating">
+                            <div class="stars">★★★★☆</div>
+                            <span>4/5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="customer-info">
+                        <img src="https://randomuser.me/api/portraits/men/56.jpg" alt="Customer Photo" class="customer-photo">
+                        <div>
+                            <h3 class="customer-name">Theo</h3>
+                            <div class="review-date">October 12, 2024</div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p class="customer-review">"Staff and ambiance is really good and really a good place to have a delighted pizza. Good for family."</p>
+                        <div class="rating">
+                            <div class="stars">★★★★☆</div>
+                            <span>4/5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="customer-info">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer Photo" class="customer-photo">
+                        <div>
+                            <h3 class="customer-name">Rolf</h3>
+                            <div class="review-date">October 10, 2024</div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p class="customer-review">"Very average outlet... but ok Pizza it's Domino's. One can improve on the quality of spaces and ambiance. This Offers is Very Nice!"</p>
+                        <div class="rating">
+                            <div class="stars">★★★★☆</div>
+                            <span>4/5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="customer-info">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Customer Photo" class="customer-photo">
+                        <div>
+                            <h3 class="customer-name">Emma</h3>
+                            <div class="review-date">October 8, 2024</div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p class="customer-review">"The best pizza delivery experience! Always on time and the food is always hot and delicious. Highly recommend!"</p>
+                        <div class="rating">
+                            <div class="stars">★★★★★</div>
+                            <span>5/5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PIZZA RESTAURANT</h3>
+                    <a href="#">Restaurant Near Me</a>
+                    <a href="#">Pizza Near Me</a>
+                    <a href="#">Food Delivery</a>
+                    <a href="#">Italian food</a>
+                    <a href="#">Order food Online</a>
+                </div>
+                <div class="footer-section">
+                    <h3>MENU</h3>
+                    <a href="#">Veg Pizza</a>
+                    <a href="#">Chicken Pizza</a>
+                    <a href="#">Pasta</a>
+                    <a href="#">Pizza Crust</a>
+                    <a href="#">Beverages</a>
+                </div>
+                <div class="footer-section">
+                    <h3>ABOUT</h3>
+                    <a href="#">Gift Card</a>
+                    <a href="#">Card Balance Enquiry</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Virtual Pizza Party</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Domino's Pizza. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

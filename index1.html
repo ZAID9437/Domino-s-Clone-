@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domino's Pizza - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #E31837 0%, #9D0B28 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* .logo::before {
+            content: "";
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            vertical-align: middle;
+            position: relative;
+        } */
+        
+        .logo::after {
+            content: "";
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background: #E31837;
+            border-radius: 50%;
+            position: absolute;
+            top: 13px;
+            left: 13px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .hero-text {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .order-btn {
+            display: inline-block;
+            background: #E31837;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .order-btn:hover {
+            background: #9D0B28;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Pizza Menu Section */
+        .menu {
+            padding: 70px 0;
+            text-align: center;
+        }
+        
+        .menu h2 {
+            font-size: 2.5rem;
+            color: #E31837;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .menu h2::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #E31837;
+            border-radius: 2px;
+        }
+        
+        .pizza-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .pizza {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            width: 350px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .pizza:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pizza img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+        
+        .pizza:hover img {
+            transform: scale(1.05);
+        }
+        
+        .pizza h3 {
+            font-size: 1.5rem;
+            margin: 15px 0;
+            color: #333;
+        }
+        
+        .pizza p {
+            padding: 0 20px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .pizza span {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #E31837;
+            margin: 15px 0;
+        }
+        
+        .pizza-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .pizza-actions a {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+        
+        .review-btn {
+            display: inline-block;
+            background: #FFD700;
+            color: #333;
+            padding: 10px 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .review-btn:hover {
+            background: #FFC400;
+            transform: translateY(-3px);
+        }
+        
+        /* Special Offers Banner */
+        .offers-banner {
+            background: linear-gradient(135deg, #FFD700 0%, #FFC400 100%);
+            padding: 40px 0;
+            text-align: center;
+            margin: 40px 0;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .offers-banner h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .offers-banner p {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: #2C3E50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .foot-panel1 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .foot-panel1 ul {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .foot-panel1 ul p {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #FFD700;
+        }
+        
+        .foot-panel1 ul a {
+            display: block;
+            color: #DDD;
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .foot-panel1 ul a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        footer hr {
+            border: none;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 20px 0;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            color: #AAA;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .hero {
+                height: 60vh;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .menu h2 {
+                font-size: 2rem;
+            }
+            
+            .pizza {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .foot-panel1 {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Dominos_pizza_logo.svg" alt="Domino's Logo" style="height:40px; vertical-align:middle; margin-right:10px;">
+                Domino's
+            </div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="index7.html">Menu</a></li>
+                <li><a href="index5.html">Offers</a></li>
+                <li><a href="index4.html">Order Now</a></li>
+                <li><a href="index3.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Welcome to Domino's Pizza</h1>
+            <p>Hot & Fresh Pizza delivered to your door!</p>
+            <p>Diwali Bumper Offers upto 15th November.</p>
+            <br><br>
+            <a href="index5.html" class="order-btn">Order Now</a>
+        </div>
+    </section>
+
+    <div class="offers-banner">
+        <div class="container">
+            <h2>Special Diwali Offers!</h2>
+            <p>Celebrate the festival of lights with Domino's! Enjoy up to 50% off on select pizzas and get a free garlic bread with every order above ₹499. Offer valid until November 15th.</p>
+            <a href="index5.html" class="order-btn">View All Offers</a>
+        </div>
+    </div>
+
+    <section class="menu">
+        <div class="container">
+            <h2>Our Pizza Menu</h2>
+            <div class="pizza-items">
+                <div class="pizza">
+                    <img src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Pizza Margherita">
+                    <h3>Pizza Margherita</h3>
+                    <p>Classic cheese and tomato base</p>
+                    <span>₹199</span>
+                    <div class="pizza-actions">
+                        <a href="index2.html" class="order-btn">Order Now</a>
+                        <a href="index9.html" class="review-btn">Review</a>
+                    </div>
+                </div>
+                <div class="pizza">
+                    <img src="Pepperoni Pizza.jpg" alt="Pepperoni Pizza">
+                    <h3>Pepperoni Pizza</h3>
+                    <p>Pepperoni and mozzarella</p>
+                    <span>₹250</span>
+                    <div class="pizza-actions">
+                        <a href="index2.html" class="order-btn">Order Now</a>
+                        <a href="index9.html" class="review-btn">Review</a>
+                    </div>
+                </div>
+                <div class="pizza">
+                    <img src="BBQ.jpg">
+                    <h3>BBQ Chicken Pizza</h3>
+                    <p>BBQ sauce with grilled chicken</p>
+                    <span>₹350</span>
+                    <div class="pizza-actions">
+                        <a href="index2.html" class="order-btn">Order Now</a>
+                        <a href="index9.html" class="review-btn">Review</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu">
+        <div class="container">
+            <div class="pizza-items">
+                <div class="pizza">
+                    <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Valcano Pizza">
+                    <h3>Valcano Pizza</h3>
+                    <p>Spicy volcano sauce with extra cheese</p>
+                    <span>₹650</span>
+                    <div class="pizza-actions">
+                        <a href="index2.html" class="order-btn">Order Now</a>
+                        <a href="index9.html" class="review-btn">Review</a>
+                    </div>
+                </div>
+                <div class="pizza">
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Pepper cheese pizza">
+                    <h3>Paper Cheese</h3>
+                    <p>Pepperoni and mozzarella</p>
+                    <span>₹375</span>
+                    <div class="pizza-actions">
+                        <a href="index2.html" class="order-btn">Order Now</a>
+                        <a href="index8.html" class="review-btn">Review</a>
+                    </div>
+                </div>
+                <div class="pizza">
+                    <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="cheese and corn pizza">
+                    <h3>Cheese and Corn Pizza</h3>
+                    <p>Sweet corn with mozzarella cheese</p>
+                    <span>₹250</span>
+                    <div class="pizza-actions">
+                        <a href="index2.html" class="order-btn">Order Now</a>
+                        <a href="index9.html" class="review-btn">Review</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="foot-panel1">
+                <ul>
+                    <p>PIZZA RESTAURANT</p>
+                    <a href="#">Restaurant Near Me</a>
+                    <a href="#">Pizza Near Me</a>
+                    <a href="#">Food Delivery</a>
+                    <a href="#">Italian food</a>
+                    <a href="#">Order food Online</a>
+                </ul>
+                <ul>
+                    <p>Menu</p>
+                    <a href="#">Veg Pizza</a>
+                    <a href="#">Chicken Pizza</a>
+                    <a href="#">Pasta</a>
+                    <a href="#">Pizza Crust</a>
+                    <a href="#">Beverages</a>
+                    <a href="#">Pizza Main</a>
+                    <a href="#">Burger Pizza</a>
+                </ul>
+                <ul>
+                    <p>COMPANY</p>
+                    <a href="#">Blog</a>
+                    <a href="#">Investor</a>
+                    <a href="#">Feed Back</a>
+                    <a href="#">Ads</a>
+                </ul>
+                <ul>
+                    <p>ABOUT</p>
+                    <a href="#">Gift Card</a>
+                    <a href="#">Card Balance Enquiry</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Virtual Pizza Party</a>
+                    <a href="#">E-Gift Vouchers</a>
+                </ul>
+                <ul>
+                    <p>LEGAL</p>
+                    <a href="#">Disclaimer</a>
+                    <a href="#">Terms & Condition</a>
+                    <a href="#">Privacy Policy</a>
+                </ul>
+            </div>
+            <hr>
+            <div class="copyright">
+                <p>&copy; 2024 Domino's Pizza. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

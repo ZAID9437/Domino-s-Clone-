@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Domino's Pizza</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #E31837 0%, #9D0B28 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        header h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-info h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .contact-info h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #FFFFFF;
+            border-radius: 2px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .info-item .icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 20px;
+        }
+        
+        .info-details h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .info-details p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: #FFFFFF;
+            color: #E31837;
+            transform: translateY(-5px);
+        }
+        
+        .order-form {
+            flex: 2;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            color: #333;
+        }
+        
+        .order-form h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: #E31837;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .order-form h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #E31837;
+            border-radius: 2px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #222;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #E31837;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(227, 24, 55, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        button {
+            background: #E31837;
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(227, 24, 55, 0.3);
+        }
+        
+        button:hover {
+            background: #9D0B28;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(227, 24, 55, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .store-info {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .store-info h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .store-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .store-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .store-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .store-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #FFC300;
+        }
+        
+        .store-card p {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            header h3 {
+                font-size: 1.2rem;
+            }
+            
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .order-form, .contact-info {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Contact Domino's Pizza</h1>
+            <h3>We're here to help with any questions, feedback, or concerns you might have about our pizza or service.</h3>
+        </header>
+        
+        <div class="content-wrapper">
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                
+                <div class="info-item">
+                    <div class="icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Phone Support</h4>
+                        <p>1-800-DOMINOS (1-800-366-4667)</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Email Us</h4>
+                        <p>support@dominos.com</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Business Hours</h4>
+                        <p>Mon-Thu: 9am - 11pm</p>
+                        <p>Fri-Sat: 9am - 1am</p>
+                        <p>Sun: 11am - 11pm</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Headquarters</h4>
+                        <p>30 Frank Lloyd Wright Dr, Ann Arbor, MI 48105</p>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <section class="order-form">
+                <h2>Send Us a Message</h2>
+                <form action="index3.html" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" placeholder="Enter your message here..."></textarea>
+                    </div>
+                    
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+        </div>
+        
+        <div class="store-info">
+            <h2>Visit Our Stores</h2>
+            <div class="store-cards">
+                <div class="store-card">
+                    <h3>New York Downtown</h3>
+                    <p>123 Pizza Street, NY 10001</p>
+                    <p>Phone: (212) 555-7890</p>
+                    <p>Open: 10:00 AM - 12:00 AM</p>
+                </div>
+                
+                <div class="store-card">
+                    <h3>Los Angeles West</h3>
+                    <p>456 Pepperoni Ave, LA 90001</p>
+                    <p>Phone: (310) 555-1234</p>
+                    <p>Open: 10:00 AM - 1:00 AM</p>
+                </div>
+                
+                <div class="store-card">
+                    <h3>Chicago Central</h3>
+                    <p>789 Cheese Blvd, CH 60007</p>
+                    <p>Phone: (312) 555-5678</p>
+                    <p>Open: 10:00 AM - 12:00 AM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2024 Domino's Pizza, Inc. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domino's Pizza Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #E31837 0%, #9D0B28 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+        
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        /* Menu Section */
+        .menu {
+            padding: 60px 0;
+        }
+        
+        .menu h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            color: #E31837;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .menu h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #E31837;
+            border-radius: 2px;
+        }
+        
+        .pizza-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .pizza {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .pizza:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pizza img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .pizza:hover img {
+            transform: scale(1.05);
+        }
+        
+        .pizza h3 {
+            font-size: 1.6rem;
+            color: #E31837;
+            margin-bottom: 10px;
+        }
+        
+        .pizza p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .pizza span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .order-btn {
+            display: inline-block;
+            background: #E31837;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+        
+        .order-btn:hover {
+            background: #9D0B28;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(227, 24, 55, 0.4);
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: #2C3E50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .foot-panel1 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .foot-panel1 ul {
+            list-style: none;
+        }
+        
+        .foot-panel1 ul p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #FFC300;
+        }
+        
+        .foot-panel1 ul a {
+            display: block;
+            color: #ddd;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .foot-panel1 ul a:hover {
+            color: #E31837;
+        }
+        
+        footer hr {
+            border: none;
+            height: 1px;
+            background: #444;
+            margin: 20px 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .menu h2 {
+                font-size: 2.2rem;
+            }
+            
+            .pizza-items {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Special Offers Banner */
+        .offers-banner {
+            background: #FFC300;
+            padding: 20px;
+            text-align: center;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .offers-banner h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .offers-banner p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Dominos_pizza_logo.svg" alt="Domino's Logo" style="height:40px; vertical-align:middle; margin-right:10px;">
+                Domino's
+            </div>
+            <ul>
+                <li><a href="index1.html">Home</a></li>
+                <li><a href="index7.html">Menu</a></li>
+                <li><a href="index5.html">Offers</a></li>
+                <li><a href="index4.html">Order Now</a></li>
+                <li><a href="index3.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Delicious Pizza Made With Passion</h1>
+            <p>Experience the authentic taste of Italy with our handcrafted pizzas</p>
+        </div>
+    </div>
+
+    <div class="offers-banner">
+        <h3>Special Offers Available!</h3>
+        <p>Get 20% off on your first order | Free delivery on orders above ₹299</p>
+    </div>
+
+    <section class="menu">
+        <h2> Pizza</h2>
+        <div class="pizza-items">
+            <div class="pizza">
+                <img src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGl6emElMjBtYXJnaGVyaXRhfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=80" alt="Pizza Margherita">
+                <h3>Pizza Margherita</h3>
+                <p>Classic cheese and tomato base</p>
+                <span>₹199</span><br><br>
+                <a href="index2.html" class="order-btn">Order Now</a>
+                <a href="index8.html" class="order-btn">Review</a>
+            </div>
+            <div class="pizza">
+                <img src="https://images.unsplash.com/photo-1627626775846-122b778965ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHBlcHBlcm9uaSUyMHBpenphfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=80" alt="Pepperoni Pizza">
+                <h3>Pepperoni Pizza</h3>
+                <p>Pepperoni and mozzarella</p>
+                <span>₹250</span><br><br>
+                <a href="index2.html" class="order-btn">Order Now</a>
+                <a href="index9.html" class="order-btn">Review</a>
+            </div>
+            <div class="pizza">
+                <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGJiJTIwcGl6emF8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=80" alt="BBQ Chicken Pizza">
+                <h3>BBQ Chicken Pizza</h3>
+                <p>BBQ sauce with grilled chicken</p>
+                <span>₹500</span><br><br>
+                <a href="index2.html" class="order-btn">Order Now</a>
+                <a href="index8.html" class="order-btn">Review</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu">
+        <div class="pizza-items">
+            <div class="pizza">
+                <img src="https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHZvbGNhbm8lMjBwaXp6YXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Valcano Pizza">
+                <h3>Valcano Pizza</h3>
+                <p>Classic cheese</p>
+                <span>₹650</span><br><br>
+                <a href="index2.html" class="order-btn">Order Now</a>
+                <a href="index9.html" class="order-btn">Review</a>
+            </div>
+            <div class="pizza">
+                <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVwcGVyJTIwY2hlZXNlJTIwcGl6emF8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=80" alt="Pepper cheese pizza">
+                <h3>Paper Cheese</h3>
+                <p>Pepperoni and mozzarella</p>
+                <span>₹375</span><br><br>
+                <a href="index2.html" class="order-btn">Order Now</a>
+                <a href="index8.html" class="order-btn">Review</a>
+            </div>
+            <div class="pizza">
+                <img src="cheese and corn pizza.jpg" alt="cheese and corn pizza">
+                <h3>cheese and corn pizza</h3>
+                <p>cheese and corn pizza</p>
+                <span>₹250</span><br><br>
+                <a href="index2.html" class="order-btn">Order Now</a>
+                <a href="index9.html" class="order-btn">Review</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="foot-panel1">
+                <ul>
+                    <p>PIZZA RESTAURANT</p>
+                    <a href="#">Restaurant Near Me</a>
+                    <a href="#">Pizza Near Me</a>
+                    <a href="#">Food Delivery</a>
+                    <a href="#">Italian food</a>
+                    <a href="#">Order food Online</a>
+                </ul>
+                <ul>
+                    <p>Menu</p>
+                    <a href="#">Veg Pizza</a>
+                    <a href="#">Chicken Pizza</a>
+                    <a href="#">Pasta</a>
+                    <a href="#">Pizza Crust</a>
+                    <a href="#">Beverages</a>
+                    <a href="#">Pizza Main</a>
+                    <a href="#">Burger Pizza</a>
+                </ul>
+                <ul>
+                    <p>COMPANY</p>
+                    <a href="#">Blog</a>
+                    <a href="#">Investor</a>
+                    <a href="#">feed Back</a>
+                    <a href="#">Ads</a>
+                </ul>
+                <ul>
+                    <p>ABOUT</p>
+                    <a href="#">Gift Card</a>
+                    <a href="#">Card BNalance Enquriy</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Virtual Pizza Party</a>
+                    <a href="#">E-Gift Vouchers</a>
+                </ul>
+                <ul>
+                    <p>LEGAL</p>
+                    <a href="#">Disclaimer</a>
+                    <a href="#">Terms & Condition</a>
+                    <a href="#">Privacy Policy</a>
+                </ul>
+            </div>
+            <hr>
+        </div>
+    </footer>
+</body>
+</html>

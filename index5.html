@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domino's Pizza - Special Offers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #E31837 0%, #9D0B28 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+        
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .hero-text {
+            max-width: 800px;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-text p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            background: #E31837;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(227, 24, 55, 0.3);
+        }
+        
+        .hero-btn:hover {
+            background: #9D0B28;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(227, 24, 55, 0.4);
+        }
+        
+        /* Diwali Offer Banner */
+        .diwali-banner {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            padding: 30px;
+            text-align: center;
+            margin: 40px 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            color: #8B0000;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diwali-banner::before {
+            content: "🎉";
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 2rem;
+        }
+        
+        .diwali-banner::after {
+            content: "🎉";
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+        }
+        
+        .diwali-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .diwali-banner p {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .countdown-item {
+            background: #8B0000;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            min-width: 70px;
+        }
+        
+        .countdown-item span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        /* Menu Section */
+        .menu {
+            padding: 60px 0;
+        }
+        
+        .menu h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            color: #E31837;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .menu h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #E31837;
+            border-radius: 2px;
+        }
+        
+        .pizza-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .pizza {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .pizza:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pizza-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #E31837;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .pizza img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .pizza:hover img {
+            transform: scale(1.05);
+        }
+        
+        .pizza h3 {
+            font-size: 1.6rem;
+            color: #E31837;
+            margin-bottom: 10px;
+        }
+        
+        .pizza p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .pizza span {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999 !important;
+            font-size: 1.4rem !important;
+            margin-right: 10px;
+        }
+        
+        .order-btn {
+            display: inline-block;
+            background: #E31837;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+        
+        .order-btn:hover {
+            background: #9D0B28;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(227, 24, 55, 0.4);
+        }
+        
+        .review-btn {
+            display: inline-block;
+            background: #333;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+        
+        .review-btn:hover {
+            background: #555;
+            transform: translateY(-3px);
+        }
+        
+        /* Newsletter Section */
+        .newsletter {
+            background: linear-gradient(135deg, #E31837 0%, #9D0B28 100%);
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+            margin: 40px 0;
+        }
+        
+        .newsletter h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 0 8px 8px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            background: #555;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: #2C3E50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .foot-panel1 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .foot-panel1 ul {
+            list-style: none;
+        }
+        
+        .foot-panel1 ul p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #FFC300;
+        }
+        
+        .foot-panel1 ul a {
+            display: block;
+            color: #ddd;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .foot-panel1 ul a:hover {
+            color: #E31837;
+        }
+        
+        footer hr {
+            border: none;
+            height: 1px;
+            background: #444;
+            margin: 20px 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-text p {
+                font-size: 1.2rem;
+            }
+            
+            .menu h2 {
+                font-size: 2.2rem;
+            }
+            
+            .pizza-items {
+                grid-template-columns: 1fr;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .newsletter-form input,
+            .newsletter-form button {
+                border-radius: 8px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Dominos_pizza_logo.svg" alt="Domino's Logo" style="height:40px; vertical-align:middle; margin-right:10px;">
+                Domino's
+            </div>
+            <ul>
+                <li><a href="index1.html">Home</a></li>
+                <li><a href="index7.html">Menu</a></li>
+                <li><a href="index5.html">Offers</a></li>
+                <li><a href="index4.html">Order Now</a></li>
+                <li><a href="index3.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Welcome to Domino's Pizza</h1>
+            <p>Hot & Fresh Pizza delivered to your door!</p>
+            <p>Diwali Bumper Offers upto 15th November.</p>
+            <a href="index5.html" class="hero-btn">Order Now</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="diwali-banner">
+            <h2>Diwali Special Offers!</h2>
+            <p>Enjoy amazing discounts until November 15th</p>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span id="days">05</span>
+                    Days
+                </div>
+                <div class="countdown-item">
+                    <span id="hours">12</span>
+                    Hours
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes">45</span>
+                    Minutes
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds">30</span>
+                    Seconds
+                </div>
+            </div>
+        </div>
+
+        <section class="menu">
+            <h2>Combo Offers</h2>
+            <div class="pizza-items">
+                <div class="pizza">
+                    <div class="pizza-badge">Popular</div>
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGl6emElMjBib3h8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=80" alt="2 Regular Pizzas">
+                    <h3>2 REGULAR PIZZAS</h3>
+                    <p>Classic cheese at ₹99 each</p>
+                    <span class="original-price">₹398</span>
+                    <span>₹198</span><br><br>
+                    <a href="index2.html" class="order-btn">Order Now</a>
+                    <a href="index9.html" class="review-btn">Review</a>
+                </div>
+                <div class="pizza">
+                    <div class="pizza-badge">New</div>
+                    <img src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVwc2klMjBwaXp6YXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Pepsi, Pepper Paneer and Lava Cake">
+                    <h3>Pepsi, Pepper Paneer and Lava Cake</h3>
+                    <p>3 Item at just ₹250</p>
+                    <span class="original-price">₹450</span>
+                    <span>₹250</span><br><br>
+                    <a href="index2.html" class="order-btn">Order Now</a>
+                    <a href="index8.html" class="review-btn">Review</a>
+                </div>
+                <div class="pizza">
+                    <div class="pizza-badge">Best Value</div>
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGl6emElMjBib3h8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=80" alt="6 Type Pizza">
+                    <h3>6 Type Pizza</h3>
+                    <p>Get 6 pizza at just</p>
+                    <span class="original-price">₹899</span>
+                    <span>₹599</span><br><br>
+                    <a href="index2.html" class="order-btn">Order Now</a>
+                    <a href="index9.html" class="review-btn">Review</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="menu">
+            <div class="pizza-items">
+                <div class="pizza">
+                    <div class="pizza-badge">Family Pack</div>
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGl6emElMjBwZXBzaXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Pizza + Pepsi + Lava Cake">
+                    <h3>REGULAR Pizza + PEPSI 200ml + CHOCO LAVA cake</h3>
+                    <p>PERSONAL COMBO</p>
+                    <span class="original-price">₹899</span>
+                    <span>₹779</span><br><br>
+                    <a href="index2.html" class="order-btn">Order Now</a>
+                    <a href="index8.html" class="review-btn">Review</a>
+                </div>
+                <div class="pizza">
+                    <div class="pizza-badge">Limited Time</div>
+                    <img src="4 Course Meal.jpg" alt="4 Course Meal">
+                    <h3>4 COURSE MEAL @99</h3>
+                    <p>Pepperoni and mozzarella + Tomato and Onion salad + 1L Drink and + Chicken Nuggets</p>
+                    <span class="original-price">₹299</span>
+                    <span>₹99</span><br><br>
+                    <a href="index2.html" class="order-btn">Order Now</a>
+                    <a href="index9.html" class="review-btn">Review</a>
+                </div>
+                <div class="pizza">
+                    <div class="pizza-badge">Party Pack</div>
+                    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGl6emElMjBwYXJ0eXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Pizza for Everyone">
+                    <h3>For Six Pizza for Everyone</h3>
+                    <p>3 Medium Pizzas + Chicken Kickers + Potato Wedges + 2.28 L Drink</p>
+                    <span class="original-price">₹1599</span>
+                    <span>₹1199</span><br><br>
+                    <a href="index2.html" class="order-btn">Order Now</a>
+                    <a href="index8.html" class="review-btn">Review</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <h2>Subscribe for More Offers</h2>
+            <p>Join our newsletter and get exclusive deals delivered to your inbox</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="foot-panel1">
+                <ul>
+                    <p>PIZZA RESTAURANT</p>
+                    <a href="#">Restaurant Near Me</a>
+                    <a href="#">Pizza Near Me</a>
+                    <a href="#">Food Delivery</a>
+                    <a href="#">Italian food</a>
+                    <a href="#">Order food Online</a>
+                </ul>
+                <ul>
+                    <p>Menu</p>
+                    <a href="#">Veg Pizza</a>
+                    <a href="#">Chicken Pizza</a>
+                    <a href="#">Pasta</a>
+                    <a href="#">Pizza Crust</a>
+                    <a href="#">Beverages</a>
+                    <a href="#">Pizza Main</a>
+                    <a href="#">Burger Pizza</a>
+                </ul>
+                <ul>
+                    <p>COMPANY</p>
+                    <a href="#">Blog</a>
+                    <a href="#">Investor</a>
+                    <a href="#">feed Back</a>
+                    <a href="#">Ads</a>
+                </ul>
+                <ul>
+                    <p>ABOUT</p>
+                    <a href="#">Gift Card</a>
+                    <a href="#">Card Balance Enquiry</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Virtual Pizza Party</a>
+                    <a href="#">E-Gift Vouchers</a>
+                </ul>
+                <ul>
+                    <p>LEGAL</p>
+                    <a href="#">Disclaimer</a>
+                    <a href="#">Terms & Condition</a>
+                    <a href="#">Privacy Policy</a>
+                </ul>
+            </div>
+            <hr>
+        </div>
+    </footer>
+
+    <!-- <script>
+        // Countdown timer
+        function updateCountdown() {
+            const targetDate = new Date('2024-11-15T23:59:59');
+            const now = new Date();
+            const difference = targetDate - now;
+            
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script> -->
+</body>
+</html>

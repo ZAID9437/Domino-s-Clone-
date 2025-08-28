@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Domino's Pizza Order</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #E31837 0%, #9D0B28 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+        
+        header h1 {
+            color: #E31837;
+            font-size: 2.8rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+        }
+        
+        .header-subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        p
+        {
+            color: #666; 
+            font-size: 1.2rem; 
+            max-width: 600px; 
+            margin: 0 auto 30px;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            width: 100%;
+        }
+        
+        .order-info {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .order-info h2 {
+            color: #E31837;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px dashed #E31837;
+            padding-bottom: 10px;
+        }
+        
+        .order-steps {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .order-steps li {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .order-steps li i {
+            color: #E31837;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .delivery-time {
+            text-align: center;
+            background: #E31837;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .delivery-time h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .delivery-time p {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .pizza-img {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .pizza-img img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .order-form {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-title {
+            text-align: center;
+            color: #E31837;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: #E31837;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(227, 24, 55, 0.2);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .pizza-details {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .pizza-details h3 {
+            color: #E31837;
+            margin-bottom: 15px;
+        }
+        
+        button {
+            background: #E31837;
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background: #9D0B28;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .secure-checkout {
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .secure-checkout i {
+            color: #28a745;
+            margin-right: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #666;
+            width: 100%;
+            margin-top: 40px;
+        }
+        
+        footer p {
+            margin: 5px 0;
+        }
+        
+        /* Validation styles */
+        .error {
+            color: #E31837;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        input.invalid, select.invalid, textarea.invalid {
+            border-color: #E31837;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .order-info, .order-form {
+                width: 100%;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Domino's Pizza Order</h1>
+            <p>
+            Fill out the form below to place your order for delicious Domino's pizza!
+            </p>
+        </header>
+        
+        <div class="content-wrapper">
+            <div class="order-info">
+                <h2>Why Order From Domino's?</h2>
+                <ul class="order-steps">
+                    <li><i class="fas fa-check-circle"></i> Freshly made pizzas with quality ingredients</li>
+                    <li><i class="fas fa-shipping-fast"></i> Fast delivery guaranteed</li>
+                    <li><i class="fas fa-tag"></i> Best deals and discounts</li>
+                    <li><i class="fas fa-phone-alt"></i> 24/7 customer support</li>
+                    <li><i class="fas fa-award"></i> Satisfaction guaranteed</li>
+                </ul>
+                
+                <div class="delivery-time">
+                    <h3>Estimated Delivery Time</h3>
+                    <p>30-40 minutes</p>
+                </div>
+                
+                <div class="pizza-img">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Delicious Domino's Pizza">
+                </div>
+                
+                <p style="text-align: center; font-style: italic; margin-top: 15px;">
+                    "Hot and delicious pizza delivered to your doorstep in just 30 minutes!"
+                </p>
+            </div>
+            
+            <div class="order-form">
+                <h2 class="form-title">Place Your Order</h2>
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i> Order placed successfully! Redirecting to confirmation page...
+                </div>
+                
+                <form id="pizzaOrderForm" action="index6.html">
+                    <div class="form-group">
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        <div class="error" id="nameError">Please enter your full name</div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email">
+                            <div class="error" id="emailError">Please enter a valid email address</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                            <div class="error" id="phoneError">Please enter a valid phone number</div>
+                        </div>
+                    </div>
+                    
+                    <div class="pizza-details">
+                        <h3>Pizza Details</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pizza-type">Pizza Type:</label>
+                                <select id="pizza-type" name="pizza-type" required>
+                                    <option value="">Select pizza type</option>
+                                    <option value="Margherita">Margherita</option>
+                                    <option value="Pepperoni">Pepperoni</option>
+                                    <option value="Veggi Supreme">Veggi Supreme</option>
+                                    <option value="BBQ chicken">BBQ chicken</option>
+                                    <option value="Volcano">Volcano</option>
+                                </select>
+                                <div class="error" id="pizzaTypeError">Please select a pizza type</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="pizza-size">Pizza Size:</label>
+                                <select id="pizza-size" name="pizza-size" required>
+                                    <option value="">Select size</option>
+                                    <option value="small">Small</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="large">Large</option>
+                                </select>
+                                <div class="error" id="pizzaSizeError">Please select a pizza size</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Delivery Address:</label>
+                        <textarea id="address" name="address" rows="3" required placeholder="Enter your complete delivery address"></textarea>
+                        <div class="error" id="addressError">Please enter your delivery address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="instructions">Special Instructions:</label>
+                        <textarea id="instructions" name="instructions" rows="3" placeholder="Any special instructions for your order?"></textarea>
+                    </div>
+                    
+                    <button type="submit" id="submitButton">Place Order</button>
+                    
+                    <div class="secure-checkout">
+                        <i class="fas fa-lock"></i> Your information is secure and encrypted
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Domino's Pizza. All rights reserved.</p>
+        <p>Privacy Policy | Terms of Service</p>
+    </footer>
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('pizzaOrderForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Form validation and submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validateForm()) {
+                    // Show success message
+                    successMessage.style.display = 'block';
+                    
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Disable submit button to prevent multiple submissions
+                    document.getElementById('submitButton').disabled = true;
+                    
+                    // Redirect to index6.html after 2 seconds
+                    setTimeout(function() {
+                        window.location.href = 'index6.html';
+                    }, 2000);
+                }
+            });
+            
+            // Form validation function
+            function validateForm() {
+                let isValid = true;
+                
+                // Validate name
+                const name = document.getElementById('name');
+                const nameError = document.getElementById('nameError');
+                if (name.value.trim() === '') {
+                    nameError.style.display = 'block';
+                    name.classList.add('invalid');
+                    isValid = false;
+                } else {
+                    nameError.style.display = 'none';
+                    name.classList.remove('invalid');
+                }
+                
+                // Validate email
+                const email = document.getElementById('email');
+                const emailError = document.getElementById('emailError');
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email.value)) {
+                    emailError.style.display = 'block';
+                    email.classList.add('invalid');
+                    isValid = false;
+                } else {
+                    emailError.style.display = 'none';
+                    email.classList.remove('invalid');
+                }
+                
+                // Validate phone
+                const phone = document.getElementById('phone');
+                const phoneError = document.getElementById('phoneError');
+                const phonePattern = /^[\+]?[1-9][\d]{0,15}$/;
+                if (!phonePattern.test(phone.value.replace(/[\s\-\(\)]/g, ''))) {
+                    phoneError.style.display = 'block';
+                    phone.classList.add('invalid');
+                    isValid = false;
+                } else {
+                    phoneError.style.display = 'none';
+                    phone.classList.remove('invalid');
+                }
+                
+                // Validate pizza type
+                const pizzaType = document.getElementById('pizza-type');
+                const pizzaTypeError = document.getElementById('pizzaTypeError');
+                if (pizzaType.value === '') {
+                    pizzaTypeError.style.display = 'block';
+                    pizzaType.classList.add('invalid');
+                    isValid = false;
+                } else {
+                    pizzaTypeError.style.display = 'none';
+                    pizzaType.classList.remove('invalid');
+                }
+                
+                // Validate pizza size
+                const pizzaSize = document.getElementById('pizza-size');
+                const pizzaSizeError = document.getElementById('pizzaSizeError');
+                if (pizzaSize.value === '') {
+                    pizzaSizeError.style.display = 'block';
+                    pizzaSize.classList.add('invalid');
+                    isValid = false;
+                } else {
+                    pizzaSizeError.style.display = 'none';
+                    pizzaSize.classList.remove('invalid');
+                }
+                
+                // Validate address
+                const address = document.getElementById('address');
+                const addressError = document.getElementById('addressError');
+                if (address.value.trim() === '') {
+                    addressError.style.display = 'block';
+                    address.classList.add('invalid');
+                    isValid = false;
+                } else {
+                    addressError.style.display = 'none';
+                    address.classList.remove('invalid');
+                }
+                
+                return isValid;
+            }
+            
+            // Real-time validation as user types
+            const inputs = form.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.classList.contains('invalid')) {
+                        this.classList.remove('invalid');
+                        const errorElement = document.getElementById(this.id + 'Error');
+                        if (errorElement) {
+                            errorElement.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+    </script> -->
+</body>
+</html>

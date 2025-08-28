@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domino's Registration Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #E31837 0%, #9D0B28 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            width: 100%;
+        }
+        
+        header h1 {
+            color: white;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            color: #FFD700;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+        }
+        
+        .promo-section {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .promo-section h2 {
+            color: #E31837;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px dashed #E31837;
+            padding-bottom: 10px;
+        }
+        
+        .benefits {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .benefits li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .benefits li i {
+            color: #E31837;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .pizza-img {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .pizza-img img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .order-form {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .form-title {
+            text-align: center;
+            color: #E31837;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: #E31837;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(227, 24, 55, 0.2);
+        }
+        
+        .password-field {
+            position: relative;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .terms {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .terms input {
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        .terms label {
+            margin: 0;
+            font-weight: normal;
+        }
+        
+        button {
+            background: #E31837;
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        button:hover {
+            background: #9D0B28;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: "";
+            display: block;
+            height: 1px;
+            width: 100%;
+            background: #ddd;
+            position: absolute;
+            top: 50%;
+            left: 0;
+        }
+        
+        .divider span {
+            background: white;
+            position: relative;
+            padding: 0 15px;
+            color: #777;
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            border: 2px solid #ddd;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fb { color: #3b5998; border-color: #3b5998; }
+        .google { color: #DB4437; border-color: #DB4437; }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: white;
+            width: 100%;
+            margin-top: 40px;
+        }
+        
+        footer p {
+            margin: 5px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .promo-section, .order-form {
+                width: 100%;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Domino's Registration</h1>
+            <p>Join Domino's Rewards and get a free pizza on your first order!</p>
+        </header>
+        
+        <div class="content-wrapper">
+            <div class="promo-section">
+                <h2>Why Register With Domino's?</h2>
+                <ul class="benefits">
+                    <li><i class="fas fa-pizza-slice"></i> Earn points on every order</li>
+                    <li><i class="fas fa-gift"></i> Exclusive member deals</li>
+                    <li><i class="fas fa-bolt"></i> Faster checkout</li>
+                    <li><i class="fas fa-history"></i> Order history tracking</li>
+                    <li><i class="fas fa-birthday-cake"></i> Birthday surprise</li>
+                </ul>
+                
+                <div class="pizza-img">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Delicious Domino's Pizza">
+                </div>
+                
+                <p style="text-align: center; font-style: italic; margin-top: 15px;">
+                    "Join over 10 million Domino's fans who enjoy exclusive rewards and faster pizza delivery!"
+                </p>
+            </div>
+            
+            <div class="order-form">
+                <h2 class="form-title">Create Your Account</h2>
+                
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required placeholder="Choose a username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <div class="password-field">
+                            <input type="password" id="password" name="password" required placeholder="Create a strong password">
+                            <span class="password-toggle" onclick="togglePassword('password')">
+                                <i class="far fa-eye"></i>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password:</label>
+                        <div class="password-field">
+                            <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password">
+                            <span class="password-toggle" onclick="togglePassword('confirm-password')">
+                                <i class="far fa-eye"></i>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <textarea id="address" name="address" rows="3" required placeholder="Enter your delivery address"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="country">Country:</label>
+                        <select id="country" name="country" required>
+                            <option value="">Select your country</option>
+                            <option value="India">India</option>
+                            <option value="USA">United States</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Dubai">Dubai</option>
+                        </select>
+                    </div>
+                    
+                    <div class="terms">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the Terms & Conditions and Privacy Policy</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit">Register Now</button>
+                    </div>
+                </form>
+                
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+                
+                <div class="social-login">
+                    <div class="social-btn fb">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </div>
+                    <div class="social-btn google">
+                        <i class="fab fa-google"></i> Google
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Domino's Pizza. All rights reserved.</p>
+        <p>Privacy Policy | Terms of Service</p>
+    </footer>
+
+    <script>
+        // Simple password toggle functionality
+        function togglePassword(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const toggleIcon = passwordField.nextElementSibling.querySelector('i');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+        
+        // Form submission handler
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+            
+            // Basic validation
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // If validation passes, redirect to index1.html
+            window.location.href = 'index1.html';
+        });
+    </script>
+</body>
+</html>
