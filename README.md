@@ -1,7 +1,5 @@
-# Domino-s-Clone-
-Domino's Clone 
-# Domino-s-Clone-
-Domino's Clone 
+  # Domino-s-Clone-
+  
 🍕 Domino's Clone Website
 
 A Domino’s Pizza Clone Website built using HTML, CSS, JavaScript, and images.
