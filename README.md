@@ -42,9 +42,9 @@ Dominos-Clone/
 
 HTML5 – Website structure
 
-CSS3 – Styling (if included in project)
+CSS3 – Styling
 
-JavaScript – For interactivity (optional, if added)
+JavaScript – For interactivity 
 
 Images (.jpg, .png) – Pizza, pasta, logo, etc.
 
@@ -61,19 +61,6 @@ Double-click index.html to open in a browser.
 
 Navigate through other pages.
 
-📸 Screenshots
-
-(Add homepage & menu screenshots here for better presentation.)
-
-📌 Future Enhancements
-
-Add CSS & animations for modern UI.
-
-Make the site responsive for mobile & tablets.
-
-Add JavaScript functionality (cart, offers, search).
-
-Connect with backend (PHP/Node + MySQL) for dynamic ordering.
 
 ✅ Conclusion
 
