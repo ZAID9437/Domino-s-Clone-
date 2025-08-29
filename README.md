@@ -52,7 +52,7 @@ Images (.jpg, .png) – Pizza, pasta, logo, etc.
 
 Download or clone this repository:
 
-git clone https://github.com/YourUsername/Dominos-Clone.git
+git clone https://github.com/ZAID9437/Domino-s-Clone-.git
 
 
 Open the project folder.
